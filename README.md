@@ -4,19 +4,12 @@ FoodForward is a revolutionary web application dedicated to reducing food wastag
 
 # Key Features
 
-*User-Friendly Interface:* 
-The intuitive user interface of FoodForward makes it easy for restaurants to upload details about surplus food and for NGOs or individuals to request or claim available food items.
-
-*Verification of organizations:* 
-At FoodForward, we verify the authenticity and credibility of restaurants and NGOs participating in our platform through a streamlined verification process.
-
-*Community building*
-
-*Immediate emails to the organizations for recieving food*
+User-Friendly Interface: 
+The intuitive user interface of FoodConnect makes it easy for restaurants to upload details about surplus food and for NGOs or individuals to request or claim available food items.
 
 # Target Audience
 
-Restaurants with surplus food looking to donate excess food responsibly.
+ Restaurants with surplus food looking to donate excess food responsibly.
 Non-governmental organizations dedicated to distributing food to the needy.
 
 ## Authors
@@ -24,9 +17,9 @@ Non-governmental organizations dedicated to distributing food to the needy.
 
 - [@98493255](https://github.com/98493255)
 
-- [@Sathya-reddy1658](https://github.com/Sathya-reddy1658)
-
 - [@prithviireddy](https://github.com/prithviireddy)
+
+- [@Sathya-reddy1658](https://github.com/Sathya-reddy1658)
 
 ## Tech Stack
 
@@ -47,7 +40,7 @@ bash
 Go to the project directory
 
 bash
-  code -r WEBHACK1-Project
+  code -r "WEBHACK1-Project"
 
 
 
