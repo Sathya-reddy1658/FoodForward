@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NGO's Near You</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: "gilroy", sans-serif;
+        background-color: #f3f4f6;
+      }
+
+      #container {
+        width: 80%;
+        max-width: 1200px;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 30px;
+        color: #333;
+      }
+
+      select {
+        width: 100%;
+        max-width: 400px;
+        padding: 15px;
+        font-size: 18px;
+        border: 1px solid #ddd;
+        outline: none;
+        margin-bottom: 30px;
+        border-radius: 8px;
+      }
+
+      .people {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .person {
+        flex: 0 0 calc(33.33% - 40px);
+        max-width: calc(33.33% - 40px);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .person:hover {
+        transform: translateY(-10px);
+      }
+
+      .person img {
+        width: 100%;
+        height: 200px;
+        border-radius: 12px 12px 0 0;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .person h4 {
+        margin: 15px 0;
+        font-size: 18px;
+        color: #333;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 0 0 12px 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <h1>The NGO's Present near You!</h1>
+      <select id="location">
+        <option value="None">None</option>
+        <option value="Banjara Hills">Banjara Hills</option>
+        <option value="Jubilee Hills">Jubilee Hills</option>
+        <option value="Gachibowli">Gachibowli</option>
+        <option value="Hitech City">Hitech City</option>
+        <option value="Madhapur">Madhapur</option>
+        <option value="Kondapur">Kondapur</option>
+        <option value="Ameerpet">Ameerpet</option>
+        <option value="Begumpet">Begumpet</option>
+        <option value="Somajiguda">Somajiguda</option>
+        <option value="Kukatpally">Kukatpally</option>
+        <option value="Secunderabad">Secunderabad</option>
+        <option value="Uppal">Uppal</option>
+        <option value="Miyapur">Miyapur</option>
+        <option value="LB Nagar">LB Nagar</option>
+        <option value="Dilsukhnagar">Dilsukhnagar</option>
+        <option value="KPHB">KPHB</option>
+        <option value="Manikonda">Manikonda</option>
+        <option value="Hi-tech City">Hi-tech City</option>
+        <option value="Kothaguda">Kothaguda</option>
+        <option value="KPHB Phase 5">KPHB Phase 5</option>
+        <option value="JNTU">JNTU</option>
+        <option value="Medchal">Medchal</option>
+        <option value="Chintal">Chintal</option>
+        <option value="Suchitra">Suchitra</option>
+      </select>
+      <div class="people" id="people"></div>
+    </div>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const restaurant = urlParams.get("restaurant");
+
+      let data = [
+        {
+          name: "Ashray Akruti",
+          src: "https://content.jdmagicbox.com/hyderabad/34/040pw000034/logo/202277b40525e24ddd5add4c7e274797.jpg",
+          location: "Medchal",
+        },
+        {
+          name: "Robin Hood Army",
+          src: "https://upload.wikimedia.org/wikipedia/commons/f/f3/The_Logo_of_the_Robin_Hood_Army.jpg",
+          location: "Begumpet",
+        },
+        {
+          name: "Feeding India",
+          src: "../images/feeding.png",
+          location: "Suchitra",
+        },
+        {
+          name: "Feed The Need",
+          src: "https://feedtheneed.org/wp-content/uploads/2017/09/Feed-the-Need-logo-MAIN.png",
+          location: "Chintal",
+        },
+        {
+          name: "Khaana Chahiye Organization",
+          src: "../images/khanne.png",
+          location: "Hyderabad",
+        },
+        {
+          name: "Save Food Organisation",
+          src: "https://img.freepik.com/free-vector/colored-abstract-logo_1025-343.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Jubilee Hills",
+        },
+        {
+          name: "Charity Logo",
+          src: "https://img.freepik.com/free-vector/colorful-charity-logo-with-human-silhouettes_1025-646.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Banjara Hills",
+        },
+        {
+          name: "People Shape",
+          src: "https://img.freepik.com/free-vector/people-shape-logo-design_1025-884.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Jubilee Hills",
+        },
+        {
+          name: "Love Our Planet",
+          src: "https://img.freepik.com/free-vector/love-our-planet_1025-594.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Gachibowli",
+        },
+        {
+          name: "Hands Silhouettes",
+          src: "https://img.freepik.com/free-vector/hands-silhouettes-put-circular-form_1025-70.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Hitech City",
+        },
+        {
+          name: "Colorful Charity",
+          src: "https://img.freepik.com/premium-vector/vector-logo-illustration-charity-gradient-colorful-style_474888-1749.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Madhapur",
+        },
+        {
+          name: "Three Abstract Shapes",
+          src: "https://img.freepik.com/free-vector/logo-with-three-abstract-shapes_1025-603.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Kondapur",
+        },
+        {
+          name: "Upward Arrow",
+          src: "https://img.freepik.com/premium-vector/human-people-upward-arrow-logo_23758-101.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Ameerpet",
+        },
+        {
+          name: "Gradient Culture",
+          src: "https://img.freepik.com/free-vector/gradient-culture-logo-design-template_23-2149856794.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Somajiguda",
+        },
+        {
+          name: "Abstract Love Family",
+          src: "https://img.freepik.com/premium-vector/abstract-love-family-logo-design_650075-1823.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Kukatpally",
+        },
+        {
+          name: "Save Ukraine",
+          src: "https://img.freepik.com/premium-vector/save-ukraine-vector-graphic-design-hands-people-blue-yellow-colors-clipart_462371-2675.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Secunderabad",
+        },
+        {
+          name: "Colorful Floral",
+          src: "https://img.freepik.com/free-vector/colorful-floral-logotype_1025-339.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Uppal",
+        },
+        {
+          name: "Gradient Flat",
+          src: "https://img.freepik.com/free-vector/gradient-flat-abstract-company-logo_52683-9699.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Miyapur",
+        },
+        {
+          name: "Symmetrical Business",
+          src: "https://img.freepik.com/free-vector/symetrical-business-logo_1025-939.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "LB Nagar",
+        },
+        {
+          name: "Abstract Charity",
+          src: "https://img.freepik.com/free-vector/abstract-charity-logo-with-hearts_1025-504.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Dilsukhnagar",
+        },
+        {
+          name: "People Logo",
+          src: "https://img.freepik.com/free-vector/people-logo-gradient-design-illustration_483537-1440.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "KPHB",
+        },
+        {
+          name: "Letter C Logo",
+          src: "https://img.freepik.com/premium-vector/letter-c-logo-design-with-family-charity-community-combination_8586-1707.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Manikonda",
+        },
+        {
+          name: "3D Deal Hand Shake",
+          src: "https://img.freepik.com/free-photo/3d-deal-hand-shake-design-element_460848-11295.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Begumpet",
+        },
+        {
+          name: "Abstract Colorful",
+          src: "https://img.freepik.com/free-vector/abstract-colorful-logotype_1025-494.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Hi-tech City",
+        },
+        {
+          name: "Community Care",
+          src: "https://img.freepik.com/premium-vector/community-care-logo-template_1948-6730.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Kothaguda",
+        },
+        {
+          name: "Colorful Logo",
+          src: "https://img.freepik.com/free-vector/colorful-logo-triangular-form_1025-400.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "KPHB Phase 5",
+        },
+        {
+          name: "Community Design",
+          src: "https://img.freepik.com/premium-vector/community-design-logo-icon_775854-2539.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "JNTU",
+        },
+        {
+          name: "Colorful Abstract",
+          src: "https://img.freepik.com/free-vector/colorful-abstract-logotype_1025-399.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Chintal",
+        },
+        {
+          name: "Hand Heart Logo",
+          src: "https://img.freepik.com/free-vector/hand-heart-logo-design_23-2150631447.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Suchitra",
+        },
+        {
+          name: "Vector Logo",
+          src: "https://img.freepik.com/free-vector/vector-logo-illustration-people-gradient-colorful-style_361591-542.jpg?size=626&ext=jpg&ga=GA1.1.1943567669.1711281262&semt=ais",
+          location: "Kukatpally",
+        },
+      ];
+      let yo = "";
+      data.forEach((e) => {
+        yo += `
+                <div class="person">
+                    <img src="${e.src}" alt="Portrait" title="Portrait"> 
+                    <h4>${e.name}</h4>
+                </div>
+            `;
+      });
+      document.querySelector("#people").innerHTML = yo;
+
+      let select = document.getElementById("location");
+      select.addEventListener("change", () => {
+        var matching = data.filter((e) => {
+          return e.location
+            .toLowerCase()
+            .startsWith(select.value.toLowerCase());
+        });
+
+        let newUsers = "";
+        matching.forEach((e) => {
+          newUsers += `
+                    <div class="person">
+                        <img src="${e.src}" alt="Portrait" title="Portrait"> 
+                        <h4>${e.name}</h4>
+                    </div>`;
+        });
+        document.querySelector("#people").innerHTML = newUsers;
+
+        addClickListener();
+      });
+
+      addClickListener();
+
+      function addClickListener() {
+        document.querySelectorAll(".person").forEach((item) => {
+          item.addEventListener("click", function () {
+            let name = this.querySelector("h4").textContent;
+            window.location.href = `/person?name=${encodeURIComponent(
+              name
+            )}&restaurant=${encodeURIComponent(restaurant)}`;
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<link rel="stylesheet" href="../stylesheets/login.css">
+
+<body>
+
+  <div id="main">
+    <div class="modal">
+      <form class="form" action="">
+        <div class="banner"></div>
+        <label class="title">FoodForward <br> <span id="head"> login</span></label>
+        <p class="description">Join "FoodForward" today! Together, we can make a difference. </p>
+        <div class="tab-container">
+          <div class="tab tab--1" id="btn1">Login as an NGO</div>
+          <div class="tab tab--2" id="btn2">Login as donor</div>
+          
+        </div>
+        <div id="cred">
+          <input type="text" name="" id="inp" class="org" placeholder="Organisation name">
+          <input type="text" name="" id="inp" placeholder="Phone number ">
+          <input type="text" name="" id="inp" placeholder="E-mail">
+          <input type="text" class="regg" id="inp"  placeholder="Validation number ">
+          <input type="text" name="" id="inp" placeholder="Website (if available)">
+          <input type="text" name="" id="inp" placeholder="Location of operation">
+        </div>
+        <div class="benefits">
+          <span id="text1">What FoodForward offers</span>
+          <ul>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" height="16" width="16">
+                <rect fill="black" rx="8" height="16" width="16"></rect>
+                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="white"
+                  d="M5 8.5L7.5 10.5L11 6"></path>
+              </svg>
+              <span id="text2">Unlock access to a network of donors, volunteers, and resources dedicated to ending hunger.</span>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" height="16" width="16">
+                <rect fill="black" rx="8" height="16" width="16"></rect>
+                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="white"
+                  d="M5 8.5L7.5 10.5L11 6"></path>
+              </svg>
+              <span id="text3">community of like-minded NGOs committed to making a difference in the lives of others.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="modal--footer">
+          <label class="price">Join for a cause</label>
+          <div class="upgrade-btn" onclick="GotoThankyou()">LOGIN</div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <script>
+    function GotoThankyou() {
+      window.location.href = "/thankLogin";
+    }
+  </script>
+  <script src="../javascripts/login.js"></script>
+</body>
+</html>
