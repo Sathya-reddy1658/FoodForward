@@ -33,42 +33,42 @@ Non-governmental organizations dedicated to distributing food to the needy.
 
 Clone the project
 
-bash
+```bash
   git clone https://github.com/Sathya-reddy1658/WEBHACK1-Project.git
-
+```
 
 Go to the project directory
 
-bash
+```bash
   code -r "WEBHACK1-Project"
-
+```
 
 
 Start the server
 Using Nodemon:
 
-Method 1:
+## Method 1:
 
 Open Terminal:
 
 On Windows/Linux:
 
-bash
+```bash
 CTRL + `     (backtick)
-
+```
 
 On macOS:
 
-bash
+```bash
 Cmd + `     (backtick)
-
+```
 Once the terminal is open, run the following command:
 
-bash
+```bash
 npx nodemon
+```
 
-
-Method 2:
+## Method 2:
 
 Alternatively, you can start the server directly from the integrated terminal in Visual Studio Code:
 
@@ -77,5 +77,6 @@ Click on the "Terminal" tab located at the top menu.
 Use the "New Terminal" option to open a new terminal.
 Run the following command:
 
-bash
+```bash
 npx nodemon
+```
