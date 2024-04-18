@@ -79,5 +79,10 @@ npx nodemon
 ```bash
 npx nodemon
 ```
+3. **When the server starts got to any of the browser and type **
+
+```bash
+localhost:3000
+```
 
 By following these steps, you will have FoodForward up and running on your local machine, ready for you to explore and contribute.
