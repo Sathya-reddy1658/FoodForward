@@ -14,7 +14,7 @@ The intuitive user interface of FoodForward makes it easy for restaurants to upl
 
 ## Authors
 
-- [@98493255](https://github.com/98493255)
+- [@suraj-9849]([https://github.com/98493255](https://github.com/suraj-9849))
 - [@prithviireddy](https://github.com/prithviireddy)
 - [@Sathya-reddy1658](https://github.com/Sathya-reddy1658)
 
