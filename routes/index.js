@@ -12,6 +12,9 @@ router.get('/about', function(req, res, next) {
 router.get('/Charity', function(req, res, next) {
   res.render('Charity', { title: 'Charity' }); 
 });
+router.get('/stripe', function(req, res, next) {
+  res.render('stripe', { title: 'Stripe' }); 
+});
 
 router.get('/feeding', function(req, res, next) {
   res.render('awards', { title: 'Feeding' }); 
