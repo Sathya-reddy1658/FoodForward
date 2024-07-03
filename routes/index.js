@@ -9,8 +9,8 @@ router.get('/about', function(req, res, next) {
   res.render('about'); 
 });
 
-router.get('/milestone', function(req, res, next) {
-  res.render('milestone', { title: 'Milestone' }); 
+router.get('/Charity', function(req, res, next) {
+  res.render('Charity', { title: 'Charity' }); 
 });
 
 router.get('/feeding', function(req, res, next) {
