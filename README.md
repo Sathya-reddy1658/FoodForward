@@ -64,6 +64,10 @@ Otherwise, navigate to the project folder and proceed to the next step.
 2. **Once the terminal is open, run the following command:**
 
 ```bash
+npm i
+```
+
+```bash
 npx nodemon
 ```
 
