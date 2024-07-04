@@ -53,18 +53,20 @@
             <div class="flex flex-col justify-center items-center mt-10">
               <input type="text" class=" inputVal w-full mb-7 rounded-md py-2 px-10 text-center"
                 placeholder="Custom Amount(In Dollars)">
+             <form action="/stripe" method="post">
               <button
-                class="overflow-hidden charityBtn  relative w-32 p-2 h-12 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group">
-                Donate
-                <span
-                  class="absolute w-36 h-32 -top-8 -left-2 bg-white rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-left"></span>
-                <span
-                  class="absolute w-36 h-32 -top-8 -left-2 bg-purple-400 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-left"></span>
-                <span
-                  class="absolute w-36 h-32 -top-8 -left-2 bg-purple-600 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-left"></span>
-                <span
-                  class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-6 z-10">Donating</span>
-              </button>
+              class="overflow-hidden charityBtn  relative w-32 p-2 h-12 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group">
+              Donate
+              <span
+                class="absolute w-36 h-32 -top-8 -left-2 bg-white rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-left"></span>
+              <span
+                class="absolute w-36 h-32 -top-8 -left-2 bg-purple-400 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-left"></span>
+              <span
+                class="absolute w-36 h-32 -top-8 -left-2 bg-purple-600 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-left"></span>
+              <span
+                class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-6 z-10">Donating</span>
+            </button>
+             </form>
             </div>
 
           </div>
@@ -77,7 +79,6 @@
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
   <script src="../javascripts/Charity.js"></script>
   <script>
-    function NavBar() {
 
       var home = document.querySelector("#nav #navpart-2 #home");
       var about = document.querySelector("#nav #navpart-2 #about");
@@ -102,8 +103,6 @@
       function redirectToPartner() {
         window.location.href = "/partner";
       }
-    }
-    NavBar();
     let buttons = document.querySelectorAll(".charityButtons button");
 let inputVal = document.querySelector(".inputVal");
 

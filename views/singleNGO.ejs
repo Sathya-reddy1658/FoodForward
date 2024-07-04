@@ -226,7 +226,7 @@
 
             products.appendChild(productDiv);
 
-            donateButton.style.display = "block"; // Display the donate button
+            donateButton.style.display = "block"; 
         }
 
         form.addEventListener("submit", (event) => {
@@ -235,8 +235,7 @@
         });
 
         donateButton.addEventListener("click", () => {
-            window.location.href = `/thankyou?name=${name}&restaurant=${restaurant}`; // Navigate to the thank you page with the name and restaurant in the URL
-        });
+            window.location.href = `/thankyou?name=${name}&restaurant=${restaurant}`;     });
     </script>
 </body>
 </body>
