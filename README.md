@@ -68,6 +68,16 @@ npm i
 ```
 
 ```bash
+npm i nodemon
+```
+
+3.**Now copy the .env.example file and create the .env file:** 
+```bash
+ Add the Secret_Stripe_key and paste the http://localhost:3000 in the BASE_URL to run in the Local machine 
+```
+4. **Opne the terminal, run the following command:**
+
+```bash
 npx nodemon
 ```
 
