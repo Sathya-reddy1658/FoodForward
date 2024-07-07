@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Gilroy', sans-serif; /* Added a fallback font */
+    font-family: 'Gilroy', sans-serif;
 }
 
 html, body {
@@ -11,7 +11,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f4f4f4; /* Added a light background color */
+    background-color: #f4f4f4;
 }
 
 form {
@@ -20,53 +20,45 @@ form {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 500px; /* Added max width for better UI on larger screens */
+    max-width: 500px; 
 }
 
 label {
     font-size: 0.9em;
     color: #333;
     margin-bottom: 8px;
+    display: block;
 }
 
-input[type="text"] {
+input[type="text"], .location-button {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 0.9em;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, .location-button:focus {
     border-color: #ff5722;
+    box-shadow: 0 0 5px rgba(255, 87, 34, 0.3);
     outline: none;
 }
 
-#add,#remove {
-    padding: 12px 24px;
-    background-color: #ff5722;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 0.9em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-#buttons{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-#addrem{
-    gap: 1vw ;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.input-error {
+    border-color: red;
 }
 
-#submit{
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    display: none; 
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+
+button, #submit {
     padding: 12px 24px;
     background-color: #ff5722;
     color: #fff;
@@ -77,9 +69,7 @@ input[type="text"]:focus {
     transition: background-color 0.3s ease;
 }
 
-
-
-button:hover {
+button:hover, #submit:hover {
     background-color: #ff7043;
 }
 
@@ -106,4 +96,31 @@ h2 {
 
 .form-section {
     margin-bottom: 30px;
+}
+
+#addrem, #buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
+button:focus, input[type="text"]:focus {
+    outline: 2px solid #ff5722;
+}
+
+@media (max-width: 600px) {
+    form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    input[type="text"], .location-button, button, #submit {
+        padding: 10px;
+        font-size: 0.8em;
+    }
 }

@@ -5,10 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Donate Food</title>
-  <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
-    rel="stylesheet"
-  />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="../stylesheets/donate.css" />
 </head>
 
@@ -17,83 +14,45 @@
     <h2>Donate Food</h2>
 
     <label for="nor">Name of Restaurant</label>
-    <input type="text" placeholder="Enter the name" id="nor" />
-    
+    <input type="text" class="inputRestName" placeholder="Enter the name" id="nor" required />
+
     <label for="location">Location</label>
-    <select
-      id="location"
-      style="
-        width: 100%;
-        padding: 12px;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 0.9em;
-        transition: border-color 0.3s ease;
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background-color: #ffffff;
-        background-repeat: no-repeat;
-        background-position: right 12px top 50%, 0 0;
-        background-size: 8px auto, 100%;
-        cursor: pointer;
-      "
-    >
-      <option value="Banjara Hills">Banjara Hills</option>
-      <option value="Jubilee Hills">Jubilee Hills</option>
-      <option value="Gachibowli">Gachibowli</option>
-      <option value="Hitech City">Hitech City</option>
-      <option value="Madhapur">Madhapur</option>
-      <option value="Kondapur">Kondapur</option>
-      <option value="Ameerpet">Ameerpet</option>
-      <option value="Begumpet">Begumpet</option>
-      <option value="Somajiguda">Somajiguda</option>
-      <option value="Kukatpally">Kukatpally</option>
-      <option value="Secunderabad">Secunderabad</option>
-      <option value="Uppal">Uppal</option>
-      <option value="Miyapur">Miyapur</option>
-      <option value="LB Nagar">LB Nagar</option>
-      <option value="Dilsukhnagar">Dilsukhnagar</option>
-      <option value="KPHB">KPHB</option>
-      <option value="Manikonda">Manikonda</option>
-      <option value="Begumpet">Begumpet</option>
-      <option value="Hi-tech City">Hi-tech City</option>
-      <option value="Kothaguda">Kothaguda</option>
-      <option value="KPHB Phase 5">KPHB Phase 5</option>
-      <option value="JNTU">JNTU</option>
-      <option value="Medchal">Medchal</option>
-      <option value="Chintal">Chintal</option>
-      <option value="Suchitra">Suchitra</option>
-    </select>
+    <button type="button" id="locationButton" class="location-button">Select the Location</button>
 
     <input type="submit" id="submit" value="Submit" />
   </form>
 
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-    integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  ></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
-    integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
   <script>
-    const form = document.getElementById('donateForm');
-    const nor = document.getElementById('nor');
-    
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        let nordata = nor.value;
-        console.log(nordata);
-        window.location.href = `/donate/NGO?restaurant=${encodeURIComponent(nordata)}`;
+    document.getElementById('donateForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nor = document.getElementById('nor').value;
+      const locationButton = document.getElementById('locationButton');
+
+      if (nor) {
+        sessionStorage.setItem('restaurantName', nor);
+      } else {
+        alert('Please fill out all the fields.');
+      }
+    });
+    document.getElementById('locationButton').addEventListener('click', function () {
+      window.location.href = '/location'
     });
 
-   
+    document.getElementById('submit').addEventListener('click', function () {
+      const nor = sessionStorage.getItem('restaurantName');
+      const location = 'Your Location'; // Replace with actual location data
+      if (nor && location) {
+        window.location.href = `/donate/NGO?restaurant=${encodeURIComponent(nor)}&location=${encodeURIComponent(location)}`;
+      } else {
+        alert('Please fill out all the fields.');
+      }
+    });
+  //  window.location.href = /donate/NGO?restaurant=${encodeURIComponent(nor)}&location=${encodeURIComponent(location)};
   </script>
 </body>
 

