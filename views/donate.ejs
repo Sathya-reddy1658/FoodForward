@@ -30,33 +30,27 @@
   document.addEventListener('DOMContentLoaded', function () {
     const locationButton = document.getElementById('locationButton');
 
-    // Check if location selection is already marked
     if (sessionStorage.getItem('locationSelected') === 'true') {
       locationButton.textContent = "Location Selected";
       locationButton.style.backgroundColor = "green";
     }
 
-    // Add event listener to location button
     locationButton.addEventListener('click', function () {
-      window.location.href = '/location'; // Redirect to location page
+      window.location.href = '/location'; 
       this.textContent = "Location Selected";
       this.style.backgroundColor = "green";
 
-      // Store location selected state
       sessionStorage.setItem('locationSelected', 'true');
     });
-
-    // Form submission handling
     document.getElementById('donateForm').addEventListener('submit', function (e) {
       e.preventDefault();
 
       const nor = document.getElementById('nor').value;
       const locationButton = document.getElementById('locationButton');
 
-      // Check if restaurant name and location selected
       if (nor && sessionStorage.getItem('locationSelected') === 'true') {
         sessionStorage.setItem('restaurantName', nor);
-        const location = 'Your Location'; // Replace with actual location logic
+        const location = 'Your Location';
         if (location) {
           window.location.href = `/donate/NGO?restaurant=${encodeURIComponent(nor)}&location=${encodeURIComponent(location)}`;
         } else {
